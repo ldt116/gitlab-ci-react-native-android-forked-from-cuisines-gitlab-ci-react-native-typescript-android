@@ -1,10 +1,10 @@
 #
-# GitLab CI React native Typescript Android v0.1
+# GitLab CI React native Typescript Android v0.2
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
 
-FROM node
+FROM ubuntu:18.04
 MAINTAINER ThuanLe <thuanle@hcmut.edu.vn>
 
 RUN echo "Android SDK 26.1.1"
@@ -31,6 +31,9 @@ RUN apt-get -qq update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
+      nodejs \
+      npm \
+      gnupg \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
@@ -79,4 +82,9 @@ RUN echo "Installing Gradle" \
 
 RUN echo "Install typescript" \
   && npm install -g typescript
+
+RUN echo "Install gulp" \
+  && npm install gulp-cli -g \
+  && npm install gulp -D
+
 
