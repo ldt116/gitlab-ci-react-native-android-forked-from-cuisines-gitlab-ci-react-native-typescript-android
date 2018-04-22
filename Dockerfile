@@ -1,5 +1,5 @@
 #
-# GitLab CI React native Typescript Android v0.2
+# GitLab CI React native Typescript Android v1.0
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
@@ -86,5 +86,7 @@ RUN echo "Install typescript" \
 RUN echo "Install gulp" \
   && npm install gulp-cli -g \
   && npm install gulp -D
+
+RUN npm install -g tslint
 
 
