@@ -1,5 +1,5 @@
 #
-# GitLab CI React native Typescript Android v1.0
+# GitLab CI React native Typescript Android v1.1
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
