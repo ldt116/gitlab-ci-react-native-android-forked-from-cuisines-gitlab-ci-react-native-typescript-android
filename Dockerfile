@@ -3,6 +3,7 @@
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
+# Which will be installed:
 
 FROM ubuntu:18.04
 MAINTAINER ThuanLe <thuanle@hcmut.edu.vn>
