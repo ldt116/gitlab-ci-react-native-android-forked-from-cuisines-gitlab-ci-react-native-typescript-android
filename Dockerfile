@@ -1,12 +1,18 @@
 #
-# GitLab CI React native Typescript Android v1.1
+# GitLab CI React native Typescript Android v1.2
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
 # Which will be installed:
+# * Android Build Environments
+# * NodeJS and npm
+# * TypeScript with tslint
+# * Gulp
+# * Fastlane for iOS build
 
 FROM ubuntu:18.04
-MAINTAINER ThuanLe <thuanle@hcmut.edu.vn>
+LABEL maintainer="thuanle@hcmut.edu.vn"
+LABEL version="1.2"
 
 RUN echo "Android SDK 26.1.1"
 ENV VERSION_SDK_TOOLS "3859397"
@@ -22,8 +28,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
       bzip2 \
-      curl \
-      git-core \
+      curl wget libcurl4-openssl-dev \
+      git git-core \
       html2text \
       openjdk-8-jdk \
       libc6-i386 \
@@ -35,7 +41,9 @@ RUN apt-get -qq update && \
       nodejs \
       npm \
       gnupg \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+      build-essential imagemagick librsvg2-bin \
+      ruby ruby-dev
+      
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
     /var/lib/dpkg/info/ca-certificates-java.postinst configure
@@ -60,16 +68,13 @@ RUN echo "Installing Yarn Deb Source" \
 	&& curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb http://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-ENV BUILD_PACKAGES git yarn nodejs build-essential imagemagick librsvg2-bin ruby ruby-dev wget libcurl4-openssl-dev
 RUN echo "Installing Additional Libraries" \
 	 && rm -rf /var/lib/gems \
-	 && apt-get update && apt-get install $BUILD_PACKAGES -qqy --no-install-recommends
+	 && apt-get update && apt-get install yarn -qqy --no-install-recommends
 
 RUN echo "Installing Fastlane 2.61.0" \
 	&& gem install fastlane badge -N \
 	&& gem cleanup
-
-
 
 RUN echo "Downloading Gradle" \
 	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
@@ -80,14 +85,13 @@ RUN echo "Installing Gradle" \
 	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
 	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
 
-
 RUN echo "Install typescript" \
-  && npm install -g typescript
+  && npm install -g typescript \
+  && npm install -g tslint
 
 RUN echo "Install gulp" \
   && npm install gulp-cli -g \
   && npm install gulp -D
 
-RUN npm install -g tslint
-
-
+RUN echo "Clean up" \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
