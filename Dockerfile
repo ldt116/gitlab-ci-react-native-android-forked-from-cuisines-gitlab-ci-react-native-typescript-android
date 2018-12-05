@@ -1,5 +1,5 @@
 #
-# GitLab CI React native Typescript Android v1.2.2
+# GitLab CI React native Typescript Android v1.2.3
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
@@ -8,11 +8,10 @@
 # * NodeJS and npm
 # * TypeScript with tslint
 # * Gulp
-# * Fastlane for iOS build
 
 FROM ubuntu:18.04
 LABEL maintainer="thuanle@hcmut.edu.vn"
-LABEL version="1.2.2"
+LABEL version="1.2.3"
 
 RUN echo "Android SDK 26.1.1"
 ENV VERSION_SDK_TOOLS "3859397"
@@ -25,10 +24,10 @@ ENV ANDROID_HOME "/sdk"
 ENV PATH "$PATH:${ANDROID_HOME}/tools"
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get -qq update && \
-    apt-get install -qqy --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
       bzip2 \
-      curl wget \
+      curl wget  \
       git git-core \
       html2text \
       openjdk-8-jdk \
@@ -71,10 +70,6 @@ RUN echo "Installing Yarn Deb Source" \
 RUN echo "Installing Additional Libraries" \
 	 && rm -rf /var/lib/gems \
 	 && apt-get update && apt-get install yarn -qqy --no-install-recommends
-
-RUN echo "Installing Fastlane 2.61.0" \
-	&& gem install fastlane badge -N \
-	&& gem cleanup
 
 RUN echo "Downloading Gradle" \
 	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
