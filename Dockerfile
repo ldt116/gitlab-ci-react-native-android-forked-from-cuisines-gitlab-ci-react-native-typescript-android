@@ -82,7 +82,9 @@ RUN echo "Installing Gradle" \
 
 RUN echo "Install typescript" \
   && npm install -g typescript \
-  && npm install -g tslint
+  && npm install -g tslint \
+  && npm install -g npx
+  
 
 RUN echo "Install gulp" \
   && npm install gulp-cli -g \
