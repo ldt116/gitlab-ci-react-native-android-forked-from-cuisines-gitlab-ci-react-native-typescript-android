@@ -1,5 +1,5 @@
 #
-# GitLab CI React native Typescript Android v1.2.3
+# GitLab CI React native Typescript Android v1.2.4
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
@@ -11,7 +11,7 @@
 
 FROM ubuntu:18.04
 LABEL maintainer="thuanle@hcmut.edu.vn"
-LABEL version="1.2.3"
+LABEL version="1.2.4"
 
 RUN echo "Android SDK 26.1.1"
 ENV VERSION_SDK_TOOLS "3859397"
@@ -84,7 +84,7 @@ RUN echo "Install typescript" \
   && npm install -g typescript \
   && npm install -g tslint \
   && npm install -g npx
-  
+
 
 RUN echo "Install gulp" \
   && npm install gulp-cli -g \
