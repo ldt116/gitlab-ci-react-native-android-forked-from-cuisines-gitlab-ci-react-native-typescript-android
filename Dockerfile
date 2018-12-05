@@ -28,7 +28,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -qq update && \
     apt-get install -qqy --no-install-recommends \
       bzip2 \
-      curl wget libcurl4-openssl-dev \
+      curl wget \
       git git-core \
       html2text \
       openjdk-8-jdk \
