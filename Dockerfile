@@ -1,5 +1,5 @@
 #
-# GitLab CI React native Typescript Android v1.2.1
+# GitLab CI React native Typescript Android v1.2.2
 #
 # https://github.com/ldt116/gitlab-ci-react-native-typescript-android
 #
@@ -12,7 +12,7 @@
 
 FROM ubuntu:18.04
 LABEL maintainer="thuanle@hcmut.edu.vn"
-LABEL version="1.2.1"
+LABEL version="1.2.2"
 
 RUN echo "Android SDK 26.1.1"
 ENV VERSION_SDK_TOOLS "3859397"
