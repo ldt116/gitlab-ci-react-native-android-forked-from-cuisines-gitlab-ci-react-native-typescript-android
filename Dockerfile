@@ -37,11 +37,11 @@ RUN apt-get update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
-      nodejs \
-      npm \
+      nodejs npm \
       gnupg \
       build-essential imagemagick librsvg2-bin \
-      ruby ruby-dev
+      ruby ruby-dev \
+      php
       
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
